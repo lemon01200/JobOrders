@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import SignupModal from './components/SignupModal';
@@ -7,6 +8,25 @@ import HomePage from './pages/HomePage';
 import SamplePage from './pages/SamplePage';
 import PlaceholderPage from './pages/PlaceholderPage';
 import NotFoundPage from './pages/NotFoundPage';
+
+// Scrolls to #hash anchors after route changes — React Router doesn't do
+// this automatically the way native navigation does.
+function ScrollToHash() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    const id = hash.slice(1);
+    // Wait a tick so the new route has rendered.
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }, [pathname, hash]);
+  return null;
+}
 
 function AppContent() {
   const { isOpen, variant, closeModal } = useModal();
@@ -93,6 +113,7 @@ function AppContent() {
 export default function App() {
   return (
     <BrowserRouter basename="/JobOrders">
+      <ScrollToHash />
       <ModalProvider>
         <AppContent />
       </ModalProvider>

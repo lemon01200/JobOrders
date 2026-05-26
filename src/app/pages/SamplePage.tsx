@@ -4,7 +4,6 @@ import { ArrowRight, X, ArrowLeft } from 'lucide-react';
 import Button from '../components/Button';
 import SampleDigest from '../components/SampleDigest';
 import { useModal } from '../context/ModalContext';
-import Navigation from '../components/Navigation';
 
 // Part 6 - /sample Landing Page
 export default function SamplePage() {
@@ -39,8 +38,6 @@ export default function SamplePage() {
 
   return (
     <div className="min-h-screen bg-surface">
-      <Navigation hideFoundingBanner={true} />
-
       {/* Redesigned Context Bar */}
       <div className="sticky top-[72px] z-40 bg-[#EFF4FF] border-b border-brand-primary/20">
         <div className="max-w-[1280px] mx-auto px-5 md:px-12 lg:px-20 h-10 flex items-center justify-between">

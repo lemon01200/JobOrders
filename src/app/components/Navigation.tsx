@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import Button from './Button';
 import { useModal } from '../context/ModalContext';
 import { FOUNDING_SEATS_LEFT } from '../config';
@@ -10,11 +10,15 @@ interface NavigationProps {
 
 export default function Navigation({ hideFoundingBanner = false }: NavigationProps) {
   const { openModal } = useModal();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  // Hide the founding banner on non-home pages (e.g. /sample) by default.
+  const shouldHideBanner = hideFoundingBanner || !isHome;
 
   return (
     <>
       {/* Founding 50 Banner - Part 5 Section 1 */}
-      {!hideFoundingBanner && (
+      {!shouldHideBanner && (
         <div className="bg-founding-yellow border-b border-founding-yellow/30">
         <div className="max-w-[1280px] mx-auto px-5 md:px-12 lg:px-20 h-12 flex items-center justify-center text-sm md:text-base gap-2">
           {/* Ticket SVG icon */}
@@ -37,15 +41,31 @@ export default function Navigation({ hideFoundingBanner = false }: NavigationPro
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <a href="#how" className="text-ink/70 hover:text-ink transition-colors">
-              How
-            </a>
-            <a href="#why" className="text-ink/70 hover:text-ink transition-colors">
-              Why
-            </a>
-            <a href="#pricing" className="text-ink/70 hover:text-ink transition-colors">
-              Pricing
-            </a>
+            {isHome ? (
+              <>
+                <a href="#how" className="text-ink/70 hover:text-ink transition-colors">
+                  How
+                </a>
+                <a href="#why" className="text-ink/70 hover:text-ink transition-colors">
+                  Why
+                </a>
+                <a href="#pricing" className="text-ink/70 hover:text-ink transition-colors">
+                  Pricing
+                </a>
+              </>
+            ) : (
+              <>
+                <Link to="/#how" className="text-ink/70 hover:text-ink transition-colors">
+                  How
+                </Link>
+                <Link to="/#why" className="text-ink/70 hover:text-ink transition-colors">
+                  Why
+                </Link>
+                <Link to="/#pricing" className="text-ink/70 hover:text-ink transition-colors">
+                  Pricing
+                </Link>
+              </>
+            )}
             <Link to="/sample" className="text-ink/70 hover:text-ink transition-colors">
               Sample digest
             </Link>
