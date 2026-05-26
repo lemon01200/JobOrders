@@ -1,0 +1,7 @@
+node_modules
+dist
+.DS_Store
+
+# Local env files (contain secrets like webhook URLs)
+.env.local
+.env.*.local

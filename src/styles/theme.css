@@ -1,0 +1,225 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* JobOrders Design Tokens - Part 2.5 */
+  --font-size: 16px;
+
+  /* Color Palette */
+  --ink: #0B0F19;
+  --surface: #FFFFFF;
+  --soft-surface: #F6F5F0;
+  --brand-primary: #1E5EFF;
+  --brand-secondary: #FF6A2C;
+  --win-green: #16A34A;
+  --win-amber: #F59E0B;
+  --win-grey: #6B7280;
+  --dark-opp-purple: #7C3AED;
+  --deep-purple-start: #1A1033;
+  --deep-purple-end: #2D1B5C;
+  --founding-yellow: #FBBF24;
+  --hairline: #E6E3DA;
+
+  /* Legacy mappings for compatibility */
+  --background: #ffffff;
+  --foreground: #0B0F19;
+  --card: #ffffff;
+  --card-foreground: #0B0F19;
+  --popover: #ffffff;
+  --popover-foreground: #0B0F19;
+  --primary: #1E5EFF;
+  --primary-foreground: #ffffff;
+  --secondary: #FF6A2C;
+  --secondary-foreground: #ffffff;
+  --muted: #F6F5F0;
+  --muted-foreground: #6B7280;
+  --accent: #1E5EFF;
+  --accent-foreground: #ffffff;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: #E6E3DA;
+  --input: transparent;
+  --input-background: #F6F5F0;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #1E5EFF;
+  --radius: 16px;
+
+  /* Font families */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Tailwind custom font classes */
+  --font-family-sans: var(--font-sans);
+  --font-family-serif: var(--font-serif);
+  --font-family-mono: var(--font-mono);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+}
+
+@theme inline {
+  /* JobOrders Color Tokens */
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-soft-surface: var(--soft-surface);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-win-green: var(--win-green);
+  --color-win-amber: var(--win-amber);
+  --color-win-grey: var(--win-grey);
+  --color-dark-opp-purple: var(--dark-opp-purple);
+  --color-deep-purple-start: var(--deep-purple-start);
+  --color-deep-purple-end: var(--deep-purple-end);
+  --color-founding-yellow: var(--founding-yellow);
+  --color-hairline: var(--hairline);
+
+  /* Font families for Tailwind - CRITICAL for brand signature */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Legacy tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-hairline outline-brand-primary/50;
+  }
+
+  body {
+    @apply bg-surface text-ink;
+    font-family: var(--font-sans);
+  }
+
+  /**
+  * JobOrders typography - Part 2.4
+  * Uses exact specs from the design system
+  */
+
+  html {
+    font-size: 16px;
+  }
+
+  /* Display heading - used in hero */
+  h1 {
+    font-size: 3.5rem; /* 56px */
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+
+  /* Section headings */
+  h2 {
+    font-size: 2.5rem; /* 40px */
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    font-weight: 600;
+  }
+
+  /* Subsection headings */
+  h3 {
+    font-size: 1.375rem; /* 22px */
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  /* Body text */
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  label {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* CRITICAL: Force Source Serif 4 Italic for all italic text - Brand Signature */
+  .italic,
+  em,
+  i,
+  .font-serif.italic,
+  .font-serif em,
+  .font-serif i {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-style: italic !important;
+  }
+
+  /* Reduced motion support - Part 11 Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
